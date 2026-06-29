@@ -46,8 +46,7 @@
     .topbar .left::before { content: "● "; color: #cccccc; }
     .topbar .right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-    .auth-switch { display: flex; gap: 8px; }
-    .auth-switch button, .lang-switch button, .acct-btn {
+    .lang-switch button {
         background: #0d0d0d; border: 2px solid #5a5a5a;
         box-shadow: inset 0 0 0 1px #1a1a1a, inset 0 0 0 3px #2e2e2e;
         color: #8a8a8a; font-family: inherit; font-size: 12px;
@@ -55,17 +54,21 @@
         cursor: pointer; text-transform: uppercase;
         transition: all 0.15s ease;
     }
-    .auth-switch button:hover, .lang-switch button:hover:not(.active), .acct-btn:hover { color: #fff; background: #1a1a1a; }
+    .lang-switch button:hover:not(.active) { color: #fff; background: #1a1a1a; }
     .lang-switch button.active { background: #d4d4d4; color: #0a0a0a; }
     .lang-switch { display: flex; gap: 8px; }
 
     .hero {
-        margin-bottom: 56px; text-align: center; padding: 52px 24px 40px;
+        margin-bottom: 36px; text-align: center; padding: 24px 24px 20px;
         background: #0d0d0d; border: 2px solid #5a5a5a;
         box-shadow: inset 0 0 0 1px #1a1a1a, inset 0 0 0 3px #2e2e2e;
     }
-    .hero h1 { font-size: 96px; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 28px; color: #f4f4f4; font-weight: normal; }
-    .hero h1 span { color: #888; }
+    .hero-logo {
+        max-width: 65%;
+        height: auto;
+        display: block;
+        margin: 0 auto 12px;
+    }
     .hero .sub { font-size: 19px; color: #b0b0b0; max-width: 780px; margin: 0 auto; line-height: 1.7; }
 
     .divider { font-family: monospace; color: #2a2a2a; margin: 36px 0; font-size: 12px; word-break: break-all; user-select: none; text-align: center; }
@@ -77,7 +80,7 @@
     .about { font-size: 17px; color: #b8b8b8; max-width: 820px; line-height: 1.75; }
     .about p + p { margin-top: 18px; }
 
-    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .gallery { display: grid; grid-template-columns: 1fr; gap: 20px; }
     .gallery figure { margin: 0; }
     .gallery .imgbox {
         width: 100%; aspect-ratio: 16 / 9; background: #0d0d0d;
@@ -95,64 +98,11 @@
     footer .disclaimer { max-width: 820px; margin-bottom: 14px; }
     footer .copy { color: #5a5a5a; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    .auth-overlay {
-        position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-        display: none; justify-content: center; align-items: center;
-        z-index: 100; padding: 24px;
-        background-image: repeating-linear-gradient(0deg, transparent, transparent 2px,
-            rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 3px), linear-gradient(#000,#000);
-    }
-    .auth-overlay.show { display: flex; }
-    .auth-box {
-        background: #0d0d0d; border: 2px solid #5a5a5a;
-        box-shadow: inset 0 0 0 1px #1a1a1a, inset 0 0 0 3px #2e2e2e;
-        width: 100%; max-width: 520px; padding: 32px 28px;
-    }
-    .auth-box h3 {
-        font-size: 22px; text-align: center; color: #f0f0f0;
-        margin-bottom: 22px; font-weight: normal; letter-spacing: 0.06em;
-    }
-    .auth-box .field { margin-bottom: 14px; }
-    .auth-box label { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8a8a; margin-bottom: 6px; }
-    .auth-box input {
-        width: 100%; background: #0a0a0a;
-        border: 2px solid #5a5a5a;
-        box-shadow: inset 0 0 0 1px #1a1a1a, inset 0 0 0 3px #2e2e2e;
-        color: #e6e6e6; font-family: inherit; font-size: 15px;
-        padding: 10px 12px; outline: none;
-    }
-    .auth-box input:focus { border-color: #888; }
-    .auth-box .row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
-    .auth-box .row .gb-btn { flex: 1; text-align: center; min-width: 120px; }
-    .auth-msg { font-size: 13px; min-height: 18px; margin-top: 10px; color: #d05858; text-align: center; }
-    .auth-msg.ok { color: #6ec06e; }
-
-    .acct-row {
-        display: flex; align-items: center; gap: 10px;
-        background: #0a0a0a; padding: 10px 12px; margin-top: 6px;
-        border: 2px solid #5a5a5a;
-        box-shadow: inset 0 0 0 1px #1a1a1a, inset 0 0 0 3px #2e2e2e;
-        font-size: 14px; color: #d4d4d4; word-break: break-all;
-    }
-    .acct-row .copy-btn {
-        margin-left: auto;
-        background: #0d0d0d; border: 2px solid #5a5a5a;
-        box-shadow: inset 0 0 0 1px #1a1a1a, inset 0 0 0 3px #2e2e2e;
-        color: #d4d4d4; font-family: inherit;
-        font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-        padding: 4px 10px; cursor: pointer;
-        transition: all 0.12s ease;
-    }
-    .acct-row .copy-btn:hover { background: #1a1a1a; color: #fff; }
-
-    .acct-hint { font-size: 12px; color: #6e6e6e; margin-top: 10px; line-height: 1.5; }
-
     @media (max-width: 720px) {
         .frame { padding: 24px 18px 60px; }
-        .hero { padding: 32px 14px 24px; margin-bottom: 32px; }
-        .hero h1 { font-size: 56px; }
+        .hero { padding: 20px 14px 16px; margin-bottom: 24px; }
+        .hero-logo { max-width: 90%; }
         .hero .sub { font-size: 16px; }
-        .gallery { grid-template-columns: 1fr; }
         .topbar { font-size: 11px; flex-direction: column; gap: 12px; align-items: flex-start; }
         .divider { font-size: 10px; }
         .about { font-size: 16px; }
@@ -165,11 +115,6 @@
     <div class="topbar">
         <span class="left" data-i18n="status">Powered by skaF</span>
         <span class="right">
-            <span class="auth-switch" id="authSwitch">
-                <button data-action="login" data-i18n="btn_login">Войти</button>
-                <button data-action="register" data-i18n="btn_register">Регистрация</button>
-            </span>
-            <button class="acct-btn" id="btnOpenAcct" style="display:none;" data-i18n="btn_acct">Личный кабинет</button>
             <span class="lang-switch">
                 <button data-lang="ru" class="active">RU</button>
                 <button data-lang="en">EN</button>
@@ -178,8 +123,8 @@
     </div>
 
     <section class="hero">
-        <h1>MULTI<span>BOX</span></h1>
-        <p class="sub" data-i18n="hero_sub">Это полный возврат мультиплеера для старой доброй GoreBox версии 15.17.45.</p>
+        <img src="1.png" alt="MultiBox" class="hero-logo">
+        <p class="sub" data-i18n="hero_sub">Это полный возврат мультиплеера для старой доброй GoreBox Альфа версии V16.</p>
     </section>
 
     <div class="divider">────────────────────────────────────────────────────────────────────────────────</div>
@@ -187,7 +132,7 @@
     <section class="gb-panel">
         <h2 data-i18n="about_title">О проекте</h2>
         <div class="about">
-            <p data-i18n="about_p1">Multibox — это полноценный мультиплеер, возвращённый в старую версию GoreBox 15.17.45.</p>
+            <p data-i18n="about_p1">Multibox — это полноценный мультиплеер, возвращённый в старую версию GoreBox Альфа версии V16.</p>
             <p data-i18n="about_p2">Тебе ничего не нужно настраивать: просто скачай файл, положи в папку с игрой и запускай.</p>
         </div>
     </section>
@@ -197,282 +142,42 @@
     <section class="gb-panel">
         <h2 data-i18n="shots_title">Скриншоты</h2>
         <div class="gallery">
-            <figure><div class="imgbox"><img src="1.png" alt=""></div>
-                <figcaption><span class="label">001</span><span data-i18n="shot_1">Список серверов.</span></figcaption></figure>
             <figure><div class="imgbox"><img src="2.png" alt=""></div>
-                <figcaption><span class="label">002</span><span data-i18n="shot_2">Два игрока в мультиплеере.</span></figcaption></figure>
+                <figcaption><span class="label">001</span><span data-i18n="shot_2">Два игрока в мультиплеере.</span></figcaption></figure>
         </div>
     </section>
 
     <footer>
         <p class="disclaimer" data-i18n="disclaimer">Multibox — неофициальный фанатский проект на базе GoreBox.</p>
-        <p class="copy" data-i18n="copy">© Multibox project · GoreBox 15.17.45 · fan-made</p>
+        <p class="copy" data-i18n="copy">© Multibox project · GoreBox Альфа версии V16 · fan-made</p>
     </footer>
 </div>
 
-<div class="auth-overlay" id="authOverlay">
-    <div class="auth-box">
-        <h3 id="authTitle">Вход</h3>
-
-        <div id="formLogin">
-            <div class="field">
-                <label data-i18n="lbl_user">Username</label>
-                <input id="loginUser" maxlength="20">
-            </div>
-            <div class="field">
-                <label data-i18n="lbl_pass">Password</label>
-                <input id="loginPass" type="password" maxlength="64">
-            </div>
-            <div class="row">
-                <button class="gb-btn" id="btnDoLogin" data-i18n="btn_login">Войти</button>
-                <button class="gb-btn" id="btnCancel1" data-i18n="btn_cancel">Отмена</button>
-            </div>
-        </div>
-
-        <div id="formRegister" style="display:none;">
-            <div class="field">
-                <label data-i18n="lbl_email">Email</label>
-                <input id="regEmail" type="email" maxlength="80">
-            </div>
-            <div class="field">
-                <label data-i18n="lbl_user">Username</label>
-                <input id="regUser" maxlength="18">
-            </div>
-            <div class="field">
-                <label data-i18n="lbl_pass">Password</label>
-                <input id="regPass" type="password" maxlength="64">
-            </div>
-            <div class="row">
-                <button class="gb-btn" id="btnRegister" data-i18n="btn_register">Регистрация</button>
-                <button class="gb-btn" id="btnCancel2" data-i18n="btn_cancel">Отмена</button>
-            </div>
-        </div>
-
-        <div id="formAcct" style="display:none;">
-            <label style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a8a" data-i18n="acct_id">Master Player Account ID</label>
-            <div class="acct-row">
-                <span id="acctId">—</span>
-                <button class="copy-btn" data-copy="acctId" data-i18n="btn_copy">Копировать</button>
-            </div>
-
-            <div style="height:18px"></div>
-
-            <label style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a8a" data-i18n="acct_display">Display Name</label>
-            <div class="acct-row">
-                <input id="displayInput" maxlength="18" style="background:transparent;border:none;box-shadow:none;color:#fff;font-size:15px;padding:0;flex:1;outline:none">
-                <button class="copy-btn" id="btnSaveName" data-i18n="btn_save">Сохранить</button>
-            </div>
-            <div class="auth-msg" id="acctMsg"></div>
-
-            <p class="acct-hint" data-i18n="acct_hint">Используй этот ID для входа в игре через плагин.</p>
-
-            <div class="row">
-                <button class="gb-btn" id="btnBackHome" data-i18n="btn_back_home">На главную</button>
-                <button class="gb-btn" id="btnLogout" data-i18n="btn_logout">Выйти</button>
-            </div>
-        </div>
-
-        <div class="auth-msg" id="authMsg"></div>
-    </div>
-</div>
-
-<script src="https://download.playfab.com/PlayFabClientApi.js"></script>
 <script>
-PlayFab.settings.titleId = "1DFC73";
-
-const SESSION_KEY = "mb_session";
-const SESSION_TTL = 30 * 24 * 60 * 60 * 1000;
 let currentLang = "ru";
-
-function saveSession(data) {
-    data.ts = Date.now();
-    localStorage.setItem(SESSION_KEY, JSON.stringify(data));
-}
-function loadSession() {
-    try {
-        const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
-        if (!s) return null;
-        if (Date.now() - s.ts > SESSION_TTL) { localStorage.removeItem(SESSION_KEY); return null; }
-        return s;
-    } catch { return null; }
-}
-function clearSession() { localStorage.removeItem(SESSION_KEY); }
-
-const $ = id => document.getElementById(id);
-const overlay = $("authOverlay");
-
-function setLoggedInUI(loggedIn) {
-    $("authSwitch").style.display = loggedIn ? "none" : "";
-    $("btnOpenAcct").style.display = loggedIn ? "" : "none";
-}
-
-function showOverlay(mode) {
-    $("formLogin").style.display    = mode === "login" ? "" : "none";
-    $("formRegister").style.display = mode === "register" ? "" : "none";
-    $("formAcct").style.display     = mode === "acct" ? "" : "none";
-    if (mode === "login") $("authTitle").textContent = translations[currentLang].title_login;
-    if (mode === "register") $("authTitle").textContent = translations[currentLang].title_register;
-    if (mode === "acct") $("authTitle").textContent = translations[currentLang].acct_title;
-    $("authMsg").textContent = "";
-    $("acctMsg").textContent = "";
-    overlay.classList.add("show");
-}
-function hideOverlay() { overlay.classList.remove("show"); }
-function msg(text, ok) { const m = $("authMsg"); m.textContent = text; m.className = "auth-msg" + (ok ? " ok" : ""); }
-
-document.querySelectorAll("#authSwitch button").forEach(b => {
-    b.onclick = () => showOverlay(b.dataset.action);
-});
-$("btnCancel1").onclick = $("btnCancel2").onclick = hideOverlay;
-
-function fillAccount(playFabId, displayName) {
-    $("acctId").textContent = playFabId;
-    $("displayInput").value = displayName || "";
-}
-
-$("btnOpenAcct").onclick = () => {
-    const s = loadSession();
-    if (!s) { setLoggedInUI(false); return; }
-    fillAccount(s.playFabId, s.displayName);
-    showOverlay("acct");
-};
-
-$("btnBackHome").onclick = hideOverlay;
-
-$("btnLogout").onclick = () => {
-    clearSession();
-    setLoggedInUI(false);
-    hideOverlay();
-};
-
-$("btnDoLogin").onclick = () => {
-    const user = $("loginUser").value.trim();
-    const pass = $("loginPass").value;
-    if (!user || !pass) return msg(translations[currentLang].err_fill);
-    PlayFabClientSDK.LoginWithPlayFab({
-        Username: user, Password: pass, TitleId: PlayFab.settings.titleId,
-        InfoRequestParameters: { GetPlayerProfile: true, ProfileConstraints: { ShowDisplayName: true } }
-    }, (res, err) => {
-        if (err) return msg(err.errorMessage || translations[currentLang].err_login);
-        const id = res.data.PlayFabId;
-        const name = res.data.InfoResultPayload?.PlayerProfile?.DisplayName || user;
-        saveSession({ playFabId: id, displayName: name, sessionTicket: res.data.SessionTicket });
-        setLoggedInUI(true);
-        fillAccount(id, name);
-        showOverlay("acct");
-    });
-};
-
-$("btnRegister").onclick = () => {
-    const email = $("regEmail").value.trim();
-    const user  = $("regUser").value.trim();
-    const pass  = $("regPass").value;
-    if (!email || !user || !pass) return msg(translations[currentLang].err_fill);
-    if (user.length > 18) return msg(translations[currentLang].err_user_len);
-    if (pass.length < 6)  return msg(translations[currentLang].err_pass_len);
-
-    PlayFabClientSDK.RegisterPlayFabUser({
-        TitleId: PlayFab.settings.titleId,
-        Email: email,
-        Username: user,
-        Password: pass,
-        DisplayName: user,
-        RequireBothUsernameAndEmail: true
-    }, (res, err) => {
-        if (err) return msg(err.errorMessage || translations[currentLang].err_register);
-        const id = res.data.PlayFabId;
-        saveSession({ playFabId: id, displayName: user, sessionTicket: res.data.SessionTicket });
-        setLoggedInUI(true);
-        fillAccount(id, user);
-        showOverlay("acct");
-    });
-};
-
-$("btnSaveName").onclick = () => {
-    const newName = $("displayInput").value.trim();
-    const m = $("acctMsg");
-    if (!newName) { m.className = "auth-msg"; m.textContent = translations[currentLang].err_empty_name; return; }
-    if (newName.length > 18) { m.className = "auth-msg"; m.textContent = translations[currentLang].err_user_len; return; }
-    PlayFabClientSDK.UpdateUserTitleDisplayName({ DisplayName: newName }, (res, err) => {
-        if (err) { m.className = "auth-msg"; m.textContent = err.errorMessage || translations[currentLang].err_save; return; }
-        m.className = "auth-msg ok"; m.textContent = translations[currentLang].saved;
-        const s = loadSession(); if (s) { s.displayName = res.data.DisplayName; saveSession(s); }
-    });
-};
-
-document.querySelectorAll(".copy-btn[data-copy]").forEach(b => {
-    b.onclick = () => {
-        const target = document.getElementById(b.dataset.copy);
-        navigator.clipboard.writeText(target.textContent || target.value || "");
-        const old = b.textContent; b.textContent = "OK";
-        setTimeout(() => b.textContent = translations[currentLang].btn_copy, 1000);
-    };
-});
-
-(function autoLogin() {
-    const s = loadSession();
-    if (s) {
-        setLoggedInUI(true);
-        fillAccount(s.playFabId, s.displayName);
-    } else {
-        setLoggedInUI(false);
-    }
-})();
 
 const translations = {
     ru: {
         status:"MULTIBOX",
-        btn_login:"Войти", btn_register:"Регистрация", btn_logout:"Выйти",
-        btn_cancel:"Отмена", btn_save:"Сохранить", btn_copy:"Копировать",
-        btn_acct:"Личный кабинет", btn_back_home:"На главную",
-        title_login:"Вход", title_register:"Регистрация",
-        lbl_user:"Username", lbl_pass:"Password", lbl_email:"Email",
-        acct_title:"Личный кабинет", acct_id:"Master Player Account ID", acct_display:"Display Name",
-        acct_hint:"Используй этот ID для входа в игре через плагин.",
-        saved:"Сохранено",
-        err_fill:"Заполни все поля",
-        err_user_len:"Username максимум 18 символов",
-        err_pass_len:"Пароль минимум 6 символов",
-        err_empty_name:"Имя пустое",
-        err_login:"Ошибка входа",
-        err_register:"PlayFab отказал",
-        err_save:"Ошибка сохранения",
-        hero_sub:"Это полный возврат мультиплеера для старой GoreBox версии 15.17.45.",
+        hero_sub:"Это полный возврат мультиплеера для старой GoreBox Альфа версии V16.",
         about_title:"О проекте",
-        about_p1:"Multibox — это полноценный мультиплеер, возвращённый в старую версию GoreBox 15.17.45.",
+        about_p1:"Multibox — это полноценный мультиплеер, возвращённый в старую версию GoreBox Альфа версии V16.",
         about_p2:"Тебе ничего не нужно настраивать: просто скачай файл и положи в папку с игрой.",
         shots_title:"Скриншоты",
-        shot_1:"Список доступных серверов оффициальных серверов GBRP, здесь можно посмотреть, какие комнаты сейчас живые, и зайти в любую из них прямо как в оригинальном мультиплеере.",
         shot_2:"Два игрока, играющие вместе на восстановленном мультиплеере этой версии, всё как было задумано изначально.",
         disclaimer:"Multibox — это неофициальный фанатский проект, сделанный на базе игры GoreBox. Сама игра разработана компанией F2Games, и все права на неё, её ассеты, механики и название принадлежат именно им. Этот проект никак не связан с разработчиком, не используется в коммерческих целях и существует исключительно для тех, кто любит старую версию игры и хочет продолжать играть в неё вместе с друзьями.",
-        copy:"© Multibox project · GoreBox 15.17.45 · fan-made"
+        copy:"© Multibox project · GoreBox Альфа версии V16 · fan-made"
     },
     en: {
         status:"MULTIBOX",
-        btn_login:"Login", btn_register:"Register", btn_logout:"Logout",
-        btn_cancel:"Cancel", btn_save:"Save", btn_copy:"Copy",
-        btn_acct:"Account", btn_back_home:"Back to home",
-        title_login:"Login", title_register:"Register",
-        lbl_user:"Username", lbl_pass:"Password", lbl_email:"Email",
-        acct_title:"Account", acct_id:"Master Player Account ID", acct_display:"Display Name",
-        acct_hint:"Use this ID to sign in inside the game via the plugin.",
-        saved:"Saved",
-        err_fill:"Fill in all fields",
-        err_user_len:"Username max 18 characters",
-        err_pass_len:"Password min 6 characters",
-        err_empty_name:"Name is empty",
-        err_login:"Login error",
-        err_register:"PlayFab rejected",
-        err_save:"Save failed",
-        hero_sub:"A full return of multiplayer for the old GoreBox version 15.17.45.",
+        hero_sub:"A full return of multiplayer for the old GoreBox Alpha version V16.",
         about_title:"About",
-        about_p1:"Multibox is a fully working multiplayer brought back to the older GoreBox 15.17.45.",
+        about_p1:"Multibox is a fully working multiplayer brought back to the older GoreBox Alpha version V16.",
         about_p2:"You don't need to set anything up: just download the file and drop it into the game folder.",
         shots_title:"Screenshots",
-        shot_1:"List of available official GBRP servers — here you can see which rooms are currently active and join any of them to play, just like in the original multiplayer. Added new one Desert Bridge by authors of multibox",
         shot_2:"Two players together on the restored multiplayer for this version, exactly as it was originally meant to be played.",
         disclaimer:"Multibox is an unofficial fan-made project built on top of the game GoreBox. The original game is developed by F2Games, and all rights to the game itself, its assets, mechanics and name belong to them. This project is not affiliated with the developer in any way, has no commercial purpose, and exists solely for people who love the older version of the game and want to keep playing it together with friends.",
-        copy:"© Multibox project · GoreBox 15.17.45 · fan-made"
+        copy:"© Multibox project · GoreBox Alpha version V16 · fan-made"
     }
 };
 const cisCountries = ['RU','UA','BY','KZ','KG','UZ','TJ','TM','AZ','AM','GE','MD'];
